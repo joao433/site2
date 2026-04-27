@@ -13,15 +13,29 @@
 
   --radius-xl: 1.5rem;
   --radius-2xl: 2rem;
+
+  --shadow-soft: 0 20px 50px -12px rgba(0, 0, 0, 0.08);
 }
 
 @layer base {
   body {
-    @apply bg-neutral-bg text-slate-800 font-sans;
+    @apply bg-neutral-bg text-slate-800 font-sans cursor-default leading-relaxed;
   }
   
   h1, h2, h3, h4 {
-    @apply font-display font-bold tracking-tight;
+    @apply font-display font-extrabold tracking-tight;
+  }
+
+  h1 {
+    @apply leading-[1.1] tracking-tighter;
+  }
+
+  h2 {
+    @apply leading-[1.15] tracking-tight;
+  }
+
+  h3 {
+    @apply leading-[1.2] tracking-normal;
   }
 }
 
@@ -33,14 +47,37 @@
     -ms-overflow-style: none; /* IE and Edge */
     scrollbar-width: none; /* Firefox */
   }
+
+  .bg-mesh {
+    background-image: 
+      radial-gradient(at 0% 0%, hsla(202, 69%, 58%, 0.1) 0px, transparent 50%),
+      radial-gradient(at 50% 0%, hsla(45, 100%, 70%, 0.05) 0px, transparent 50%),
+      radial-gradient(at 100% 0%, hsla(113, 53%, 59%, 0.1) 0px, transparent 50%);
+  }
+
+  .bg-glow {
+    background-image: 
+      radial-gradient(circle at center, var(--color-primary) 0%, transparent 70%);
+    filter: blur(80px);
+    opacity: 0.15;
+  }
+
+  .soft-shadow {
+    box-shadow: var(--shadow-soft);
+  }
+
+  .card-depth {
+    @apply border border-white/50;
+    box-shadow: var(--shadow-soft);
+  }
 }
 
 .glass {
-  @apply bg-white/80 backdrop-blur-md border border-white/20;
+  @apply bg-white/70 backdrop-blur-xl border border-white/40;
 }
 
-.soft-shadow {
-  box-shadow: 0 10px 30px -10px rgba(77, 168, 218, 0.1);
+.glass-dark {
+  @apply bg-slate-900/40 backdrop-blur-xl border border-white/10;
 }
 
 .transition-soft {

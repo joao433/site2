@@ -18,20 +18,20 @@ export const ATTRACTIONS: Attraction[] = [
   },
   {
     id: '2',
-    name: { pt: 'Fliperama', en: 'Arcade #1' },
+    name: { pt: 'Mini Golf', en: 'Mini Golf' },
+    description: { pt: '18 buracos de aventura iluminada por neon.', en: '18 holes of neon-lit adventure.' },
+    image: 'https://i.postimg.cc/Nj2jqyM1/Captura-de-tela-2026-04-27-024802.png',
+  },
+  {
+    id: '3',
+    name: { pt: 'Fliperama', en: 'Arcade' },
     description: { pt: 'O destino final dos jogos com mais de 100 títulos clássicos e modernos.', en: 'The ultimate gaming destination with over 100 classic and modern titles.' },
     image: 'https://i.postimg.cc/NFzGHttZ/Captura-de-tela-2026-04-26-214443.png',
   },
   {
-    id: '3',
-    name: { pt: 'Mini Golf', en: 'Mini Golf' },
-    description: { pt: 'Desfute de uma partida relaxante em nosso campo de golfe.', en: 'Enjoy a relaxing game on our golf course.' },
-    image: 'https://i.postimg.cc/s24VJ7y5/Captura-de-tela-2026-04-26-214710.png',
-  },
-  {
     id: '4',
-    name: { pt: 'Batting Cages', en: 'Batting Cages' },
-    description: { pt: 'Pratique seu rebatimento em nossas gaiolas de batedores.', en: 'Practice your swing in our batting cages.' },
+    name: { pt: 'Rebatida', en: 'Batting Cages' },
+    description: { pt: 'Bata para fora do campo.', en: 'Hit it out of the park.' },
     image: 'https://i.postimg.cc/tCnpMLpR/Captura-de-tela-2026-04-26-214900.png',
   },
 ];
@@ -60,7 +60,7 @@ export const TICKETS: Ticket[] = [
     type: { pt: 'Família', en: 'Family' },
     price: 249.90,
     benefits: {
-      pt: ['Pacote de Aniversário & Diversão em Família', 'Estacionamento incluso', 'Win prizes & have fun'],
+      pt: ['Pacote de Aniversário & Diversão em Família', 'Estacionamento incluso', 'Ganhe prêmios e divirta-se'],
       en: ['Birthday Parties & Family Fun Package', 'Parking included', 'Win prizes & have fun'],
     },
   },
@@ -79,7 +79,7 @@ export const EVENTS: SeasonalEvent[] = [
     name: { pt: 'Diversão em Família', en: 'Family Fun' },
     date: { pt: 'Todo o ano', en: 'All year round' },
     description: { pt: 'Go Karts, Mini Golf e Batting Cages para todas as idades.', en: 'Go Karts, Mini Golf and Batting Cages for all ages.' },
-    image: 'https://images.unsplash.com/photo-1543589077-47d81606c1bf?auto=format&fit=crop&q=80&w=800',
+    image: 'https://i.postimg.cc/dtVGP9GF/Captura-de-tela-2026-04-27-030701.png',
   },
 ];
 
@@ -97,12 +97,36 @@ export const TRANSLATIONS: Translations = {
     cta: { pt: 'Ver Atrações', en: 'See Attractions' },
   },
   sections: {
-    attractions: { pt: 'Nossas Atrações', en: 'Go Karts • Golf • Batting' },
+    attractions: { 
+      pt: 'Explore o maior complexo de entretenimento indoor da região. Tecnologia de ponta, clássicos nostálgicos e muita velocidade esperam por você.', 
+      en: 'Explore the region\'s largest indoor entertainment complex. Cutting-edge technology, nostalgic classics and high speeds await you.' 
+    },
     tickets: { pt: 'Pacotes', en: 'Packages' },
-    map: { pt: 'Como Chegar', en: 'Find Us' },
-    events: { pt: 'Aniversários & Diversão', en: 'Birthdays & Family Fun' },
-    shop: { pt: 'Prêmios & Loja', en: 'Prizes & Shop' },
+    map: { pt: 'Nossa Localização', en: 'Our Location' },
+    events: { pt: 'Aniversários & Diversão', en: 'Birthdays & Fun' },
+    shop: { pt: 'Lanches Gourmet', en: 'Gourmet Snacks' },
     contact: { pt: 'Contato', en: 'Contact' },
+  },
+  stats: {
+    visitors: { pt: 'Visitantes anuais', en: 'Annual visitors' },
+    attractionsCount: { pt: 'Atrações únicas', en: 'Unique attractions' },
+    rating: { pt: 'Avaliação Média', en: 'Average Rating' },
+  },
+  shop: {
+    badge: { pt: 'Abasteça', en: 'Fuel Up' },
+  },
+  common: {
+    learnMore: { pt: 'Saiba Mais', en: 'Learn More' },
+    explore: { pt: 'Explorar', en: 'Explore' },
+    visitCount: { pt: 'visitaram', en: 'visited' },
+    discovery: { pt: 'Descoberta', en: 'Discovery' },
+    entertainment: { pt: 'Entretenimento Ilimitado', en: 'Unlimited Entertainment' },
+    celebrations: { pt: 'Celebrações', en: 'Celebrations' },
+    packages: { pt: 'Pacotes', en: 'Packages' },
+    mostPopular: { pt: 'Mais Popular', en: 'Most Popular' },
+    location: { pt: 'Localização', en: 'Location' },
+    information: { pt: 'Informações', en: 'Information' },
+    getDirections: { pt: 'Como chegar', en: 'Get directions' },
   },
   contact: {
     name: { pt: 'Nome', en: 'Name' },
