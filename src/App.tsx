@@ -104,27 +104,6 @@ export default function App() {
         </div>
       </header>
 
-      {/* Section Nav (Sticky below main nav) */}
-      <div className="fixed top-[68px] left-0 right-0 z-40 bg-white border-b border-slate-100 lg:block hidden">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="flex items-center gap-2 py-3 overflow-x-auto no-scrollbar">
-            {NAV_ITEMS.map((item, idx) => (
-              <a
-                key={`pill-${idx}`}
-                href={item.href}
-                className={`whitespace-nowrap px-6 py-2 rounded-full text-xs font-black uppercase tracking-widest transition-all ${
-                  idx === 0 
-                  ? 'bg-primary text-white shadow-md' 
-                  : 'text-slate-500 hover:text-primary'
-                }`}
-              >
-                {item.label[lang]}
-              </a>
-            ))}
-          </div>
-        </div>
-      </div>
-
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
@@ -151,96 +130,104 @@ export default function App() {
       </AnimatePresence>
 
       {/* Hero Section */}
-      <section id="home" className="relative h-screen flex items-center justify-center overflow-hidden pt-16">
+      <section id="home" className="relative min-h-[92vh] flex items-center px-[5%] pb-[90px] mt-[68px] overflow-hidden bg-[#0a0f1e]">
         <div className="absolute inset-0 z-0">
-          <img src={HERO_BG} alt="Hero Background" className="w-full h-full object-cover opacity-30" />
-          <div className="absolute inset-0 bg-secondary/80 mix-blend-multiply" />
-          <div className="absolute inset-0 bg-linear-to-b from-transparent to-white" />
+          <img src={HERO_BG} alt="Hero Background" className="w-full h-full object-cover opacity-20" />
         </div>
 
-        <div className="max-w-7xl mx-auto px-6 relative z-10 w-full">
+        <div className="max-w-[1400px] mx-auto w-full relative z-10">
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            className="max-w-3xl"
+            className="max-w-[680px]"
           >
-            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-full px-4 py-2 text-white text-xs font-bold mb-8">
+            <div className="inline-flex items-center gap-2 bg-white/10 border border-white/15 text-white px-4 py-1.5 rounded-full text-sm mb-6">
               <span className="text-yellow-400">★</span> 4.8 Avaliações • Aberto até 22h
             </div>
-            <h1 className="text-6xl sm:text-7xl md:text-9xl font-black text-white mb-6">
-              ONDE A <br />
-              DIVERSÃO <br />
+            <h1 className="text-[clamp(3.5rem,8vw,6.5rem)] font-display font-black leading-[0.95] text-white uppercase mb-4">
+              ONDE A<br />
+              DIVERSÃO<br />
               <span className="text-primary">NUNCA PARA</span>
             </h1>
-            <p className="text-xl md:text-2xl text-white/80 mb-10 leading-relaxed font-bold max-w-xl">
+            <p className="text-white/65 text-lg mb-10 leading-relaxed font-medium max-w-[460px]">
               {lang === 'pt' ? 'O destino premier para entretenimento na Flórida. Emoção garantida para toda a família.' : 'Florida\'s premier entertainment destination. Guaranteed excitement for the whole family.'}
             </p>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <a href="#tickets" className="btn-primary text-lg px-12">🎟 {t('footer.buyTickets')}</a>
-              <a href="#attractions" className="btn-outline text-lg px-12">{lang === 'pt' ? 'Ver Atrações' : 'View Attractions'}</a>
+            <div className="flex flex-wrap gap-4">
+              <a href="#tickets" className="btn-primary">🎟 {t('footer.buyTickets')}</a>
+              <a href="#attractions" className="btn-outline">{lang === 'pt' ? 'Ver Atrações' : 'View Attractions'}</a>
             </div>
           </motion.div>
         </div>
 
-        <div className="absolute bottom-10 left-6 right-6 lg:left-12 lg:right-12 z-10 hidden md:flex justify-between items-end">
-           <div className="flex gap-12">
-              <div className="text-white">
-                <p className="text-primary font-display font-black text-4xl leading-none">500K+</p>
-                <p className="text-white/50 text-[10px] font-black uppercase tracking-widest">{t('stats.visitors')}</p>
-              </div>
-              <div className="text-white">
-                <p className="text-primary font-display font-black text-4xl leading-none">100+</p>
-                <p className="text-white/50 text-[10px] font-black uppercase tracking-widest">{t('stats.attractionsCount')}</p>
-              </div>
-           </div>
+        {/* Hero Stats Bar */}
+        <div className="absolute bottom-0 left-0 right-0 bg-black/60 backdrop-blur-md flex z-10 border-t border-white/10">
+          <div className="flex-1 py-5 px-[5%] border-r border-white/10 text-center">
+            <strong className="font-display text-4xl font-black text-primary block leading-none">500K+</strong>
+            <span className="text-[10px] text-white/55 uppercase font-bold tracking-widest">{t('stats.visitors')}</span>
+          </div>
+          <div className="flex-1 py-5 px-[5%] border-r border-white/10 text-center">
+            <strong className="font-display text-4xl font-black text-primary block leading-none">100+</strong>
+            <span className="text-[10px] text-white/55 uppercase font-bold tracking-widest">{t('stats.attractionsCount')}</span>
+          </div>
+          <div className="flex-1 py-5 px-[5%] text-center">
+            <strong className="font-display text-4xl font-black text-primary block leading-none">4.8★</strong>
+            <span className="text-[10px] text-white/55 uppercase font-bold tracking-widest">Avaliação Média</span>
+          </div>
         </div>
       </section>
 
       {/* Discovery Section (Visual Grid) */}
-      <section id="discovery" className="py-20 lg:py-32 bg-light-gray">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="mb-12">
-            <p className="text-primary font-black uppercase tracking-widest text-xs mb-2">Descubra</p>
+      <section id="discovery" className="py-20 px-[5%] bg-light-gray">
+        <div className="max-w-[1400px] mx-auto">
+          <div className="mb-10">
+            <p className="text-primary font-bold uppercase tracking-widest text-xs mb-2">Descubra</p>
             <h2 className="section-title">Momentos Inesquecíveis</h2>
+            <p className="text-slate-500 max-w-[520px] leading-relaxed mt-4">
+              {lang === 'pt' ? 'Cada visita é uma nova aventura cheia de emoção para todas as idades.' : 'Every visit is a new adventure full of excitement for all ages.'}
+            </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 h-[600px]">
-             <div className="md:col-span-2 md:row-span-2 rounded-2xl overflow-hidden relative group">
-                <img src="https://i.postimg.cc/NFzGHttZ/Captura-de-tela-2026-04-26-214443.png" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Moment" />
-                <div className="absolute inset-0 bg-linear-to-t from-secondary/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-8">
-                   <p className="text-white font-black text-xl uppercase tracking-widest">Kart Extreme</p>
-                </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 grid-rows-[210px_210px] gap-2.5">
+             <div className="md:row-span-2 rounded-xl overflow-hidden relative group">
+                <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&auto=format&fit=crop" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" alt="Kart" />
              </div>
-             <div className="rounded-2xl overflow-hidden relative group">
-                <img src="https://i.postimg.cc/bNh37njZ/Captura-de-tela-2026-04-26-213038.png" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Moment" />
+             <div className="rounded-xl overflow-hidden relative group">
+                <img src="https://images.unsplash.com/photo-1511882150382-421056c89033?w=600&auto=format&fit=crop" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Arcade" />
              </div>
-             <div className="rounded-2xl overflow-hidden relative group">
-                <img src="https://i.postimg.cc/HxhPwN9P/Captura-de-tela-2026-04-27-014224.png" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Moment" />
+             <div className="rounded-xl overflow-hidden relative group">
+                <img src="https://images.unsplash.com/photo-1535131749-0e6d0f35e1ef?w=600&auto=format&fit=crop" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Golf" />
              </div>
-             <div className="rounded-2xl overflow-hidden relative group md:col-span-2">
-                <img src="https://i.postimg.cc/W4j3VWg2/Captura-de-tela-2026-04-27-014559.png" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Moment" />
+             <div className="rounded-xl overflow-hidden relative group">
+                <img src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=600&auto=format&fit=crop" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Party" />
+             </div>
+             <div className="rounded-xl overflow-hidden relative group">
+                <img src="https://images.unsplash.com/photo-1513889961551-628c1e5e2ee9?w=600&auto=format&fit=crop" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Fun" />
              </div>
           </div>
         </div>
       </section>
 
       {/* Attractions Section */}
-      <section id="attractions" className="py-20 lg:py-32 bg-white">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="mb-16">
-            <p className="text-primary font-black uppercase tracking-widest text-xs mb-2">Entretenimento Ilimitado</p>
+      <section id="attractions" className="py-20 px-[5%] bg-white">
+        <div className="max-w-[1400px] mx-auto">
+          <div className="mb-10">
+            <p className="text-primary font-bold uppercase tracking-widest text-xs mb-2">Entretenimento Ilimitado</p>
             <h2 className="section-title">Atrações Principais</h2>
+            <p className="text-slate-500 max-w-[520px] leading-relaxed mt-4">
+              {lang === 'pt' ? 'Explore o maior complexo de entretenimento indoor da região.' : 'Explore the region\'s largest indoor entertainment complex.'}
+            </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
             {ATTRACTIONS.map((att) => (
-              <div key={att.id} className="card-standard group flex flex-col">
-                <div className="h-56 relative overflow-hidden">
-                  <img src={att.image} alt={att.name[lang]} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
-                  <div className="absolute top-4 right-4 bg-primary text-white text-[10px] font-black py-1 px-3 rounded-full uppercase tracking-widest">★ 4.9</div>
+              <div key={att.id} className="card-standard group shadow-soft hover:-translate-y-1 hover:shadow-lg">
+                <div className="h-[175px] relative overflow-hidden">
+                  <img src={att.image} alt={att.name[lang]} className="w-full h-full object-cover" />
+                  <div className="absolute top-2.5 right-2.5 bg-primary text-white text-[10px] font-bold py-1 px-2.5 rounded-full uppercase">★ 4.9</div>
+                  <div className="absolute bottom-2.5 left-2.5 bg-black/55 text-yellow-400 text-xs px-2 py-0.5 rounded-full">★ 4.9</div>
                 </div>
-                <div className="p-6 flex flex-col flex-grow">
-                  <h3 className="text-xl font-black mb-3 text-neutral-dark">{att.name[lang]}</h3>
-                  <p className="text-slate-500 text-sm font-medium mb-6 flex-grow">{att.description[lang]}</p>
-                  <button className="btn-blue w-full">+ Detalhes</button>
+                <div className="p-5 flex flex-col">
+                  <h3 className="text-lg font-black mb-1.5 text-neutral-dark">{att.name[lang]}</h3>
+                  <p className="text-slate-500 text-[13px] leading-relaxed mb-4">{att.description[lang]}</p>
+                  <button className="btn-secondary w-fit">+ Detalhes</button>
                 </div>
               </div>
             ))}
@@ -249,63 +236,61 @@ export default function App() {
       </section>
 
       {/* Stats Section */}
-      <section className="py-16 bg-primary text-white">
-        <div className="max-w-7xl mx-auto px-6">
-           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
+      <section className="py-14 px-[5%] bg-primary text-white">
+        <div className="max-w-[1400px] mx-auto">
+           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center uppercase tracking-wider">
               <div>
-                <p className="font-display font-black text-7xl md:text-8xl">500K+</p>
-                <p className="text-white/60 font-black uppercase tracking-widest text-sm">{t('stats.visitors')}</p>
+                <p className="font-display font-black text-6xl md:text-8xl leading-none">500K+</p>
+                <span className="text-white/65 font-bold text-sm tracking-widest">{t('stats.visitors')}</span>
               </div>
               <div>
-                <p className="font-display font-black text-7xl md:text-8xl">100+</p>
-                <p className="text-white/60 font-black uppercase tracking-widest text-sm">{t('stats.attractionsCount')}</p>
+                <p className="font-display font-black text-6xl md:text-8xl leading-none">100+</p>
+                <span className="text-white/65 font-bold text-sm tracking-widest">{t('stats.attractionsCount')}</span>
               </div>
               <div>
-                <p className="font-display font-black text-7xl md:text-8xl">4.8★</p>
-                <p className="text-white/60 font-black uppercase tracking-widest text-sm">Feedback Médio</p>
+                <p className="font-display font-black text-6xl md:text-8xl leading-none">4.8★</p>
+                <span className="text-white/65 font-bold text-sm tracking-widest">Avaliação Média</span>
               </div>
            </div>
         </div>
       </section>
 
       {/* Location Section */}
-      <section id="location" className="py-20 lg:py-32 bg-light-gray">
-        <div className="max-w-7xl mx-auto px-6">
+      <section id="location" className="py-20 px-[5%] bg-light-gray">
+        <div className="max-w-[1400px] mx-auto">
+          <div className="mb-10 lg:hidden">
+            <p className="text-primary font-bold uppercase tracking-widest text-xs mb-2">Localização</p>
+            <h2 className="section-title">Nossa Casa</h2>
+          </div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
-              <p className="text-primary font-black uppercase tracking-widest text-xs mb-2">Localização</p>
-              <h2 className="section-title mb-8">Nossa Casa</h2>
-              <p className="text-slate-500 text-lg font-medium mb-12">
+              <div className="hidden lg:block mb-8">
+                <p className="text-primary font-bold uppercase tracking-widest text-xs mb-2">Localização</p>
+                <h2 className="section-title">Nossa Casa</h2>
+              </div>
+              <p className="text-slate-500 text-base leading-relaxed mb-10 max-w-[520px]">
                 O Family Fun Town está localizado no coração de Orange City, FL. Um destino de fácil acesso para diversão garantida.
               </p>
-              <div className="bg-white p-8 rounded-2xl shadow-soft border-l-[6px] border-primary space-y-6">
-                <div className="flex gap-4">
-                  <div className="w-10 h-10 bg-primary flex items-center justify-center text-white rounded-lg shrink-0">📍</div>
-                  <div>
-                    <p className="font-black text-neutral-dark">Endereço</p>
-                    <p className="text-slate-500">401 S Volusia Ave, Orange City, FL 32763</p>
+              <div className="bg-white p-8 rounded-xl shadow-soft border-l-4 border-primary space-y-5">
+                {[
+                  { icon: '📍', label: 'Endereço', value: '401 S Volusia Ave, Orange City, FL 32763' },
+                  { icon: '📞', label: 'Telefone', value: '(386) 775-2777' },
+                  { icon: '📅', label: 'Horário', value: 'Seg–Sex: 12h–22h | Sáb–Dom: 10h–23h' }
+                ].map((info, i) => (
+                  <div key={i} className="flex gap-3 items-start">
+                    <div className="w-9 h-9 bg-primary flex items-center justify-center text-white rounded-[7px] shrink-0 text-sm">{info.icon}</div>
+                    <div>
+                      <p className="font-bold text-sm text-neutral-dark">{info.label}</p>
+                      <span className="text-slate-500 text-sm leading-tight">{info.value}</span>
+                    </div>
                   </div>
-                </div>
-                <div className="flex gap-4">
-                  <div className="w-10 h-10 bg-primary flex items-center justify-center text-white rounded-lg shrink-0">📞</div>
-                  <div>
-                    <p className="font-black text-neutral-dark">Telefone</p>
-                    <p className="text-slate-500">(386) 775-2777</p>
-                  </div>
-                </div>
-                <div className="flex gap-4">
-                  <div className="w-10 h-10 bg-primary flex items-center justify-center text-white rounded-lg shrink-0">🕐</div>
-                  <div>
-                    <p className="font-black text-neutral-dark">Horário</p>
-                    <p className="text-slate-500">Seg–Sex: 12h às 22h | Sáb–Dom: 10h às 23h</p>
-                  </div>
-                </div>
-                <a href="#" className="btn-primary w-full mt-4 flex items-center gap-2">
+                ))}
+                <a href="https://maps.google.com/?q=401+S+Volusia+Ave,+Orange+City,+FL+32763" target="_blank" rel="noreferrer" className="btn-primary w-full mt-1.5">
                    🗺 Como Chegar
                 </a>
               </div>
             </div>
-            <div className="rounded-3xl overflow-hidden shadow-2xl h-[450px]">
+            <div className="rounded-xl overflow-hidden border border-slate-200 h-[290px] shadow-sm">
                <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3498.34!2d-81.2989!3d28.9497!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88e7b1a1a1a1a1a1%3A0x1!2s401+S+Volusia+Ave%2C+Orange+City%2C+FL+32763!5e0!3m2!1spt-BR!2sbr!4v1"
                 className="w-full h-full border-0"
@@ -317,35 +302,68 @@ export default function App() {
         </div>
       </section>
 
-      {/* Tickets Section */}
-      <section id="tickets" className="py-20 lg:py-32 bg-white">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <p className="text-primary font-black uppercase tracking-widest text-xs mb-2">Pacotes</p>
-            <h2 className="section-title mx-auto w-fit">Escolha Seu Pacote</h2>
+      {/* Events Section */}
+      <section id="events" className="py-20 px-[5%] bg-white">
+        <div className="max-w-[1400px] mx-auto">
+          <div className="mb-10">
+            <p className="text-primary font-bold uppercase tracking-widest text-xs mb-2">Celebrações</p>
+            <h2 className="section-title">Aniversários & Diversão</h2>
+            <p className="text-slate-500 max-w-[520px] leading-relaxed mt-4">
+               {lang === 'pt' ? 'O cenário perfeito para criar memórias que duram a vida toda.' : 'The perfect setting to create memories that last a lifetime.'}
+            </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {TICKETS.map((ticket, idx) => (
-              <div key={ticket.id} className={`p-10 rounded-2xl relative border-2 transition-all duration-300 hover:scale-105 ${
-                ticket.id === 'family' ? 'border-primary shadow-2xl' : 'border-slate-100 shadow-soft'
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <div className="relative h-[270px] rounded-xl overflow-hidden group bg-black">
+              <img src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=700&auto=format&fit=crop" alt="Festas" className="w-full h-full object-cover opacity-75 group-hover:scale-105 group-hover:opacity-65 transition-all duration-500" />
+              <div className="absolute inset-0 bg-linear-to-t from-black/80 to-transparent flex flex-col justify-end p-6">
+                <span className="bg-primary text-white text-[10px] font-bold px-2.5 py-1 rounded-full w-fit mb-2 uppercase tracking-wide">Festa</span>
+                <h3 className="text-2xl text-white mb-1">Festas de Aniversário</h3>
+                <p className="text-white/75 text-sm">O pacote premium para celebrar de forma inesquecível.</p>
+              </div>
+            </div>
+            <div className="relative h-[270px] rounded-xl overflow-hidden group bg-black">
+              <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=700&auto=format&fit=crop" alt="Família" className="w-full h-full object-cover opacity-75 group-hover:scale-105 group-hover:opacity-65 transition-all duration-500" />
+              <div className="absolute inset-0 bg-linear-to-t from-black/80 to-transparent flex flex-col justify-end p-6">
+                <span className="bg-primary text-white text-[10px] font-bold px-2.5 py-1 rounded-full w-fit mb-2 uppercase tracking-wide">Família</span>
+                <h3 className="text-2xl text-white mb-1">Diversão em Família</h3>
+                <p className="text-white/75 text-sm">Kart, Mini Golf e Batting para todas as idades.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Packets Section */}
+      <section id="packets" className="py-20 px-[5%] bg-light-gray">
+        <div className="max-w-[1400px] mx-auto">
+          <div className="mb-10 text-center">
+            <p className="text-primary font-bold uppercase tracking-widest text-xs mb-2">Pacotes</p>
+            <h2 className="text-4xl sm:text-5xl md:text-6xl font-display font-black text-neutral-dark uppercase leading-none">Escolha Seu Pacote</h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            {TICKETS.map((ticket) => (
+              <div key={ticket.id} className={`bg-white rounded-xl border-2 p-8 transition-all hover:-translate-y-1 hover:shadow-soft ${
+                ticket.id === 'family' ? 'border-primary' : 'border-[#E5E7EB]'
               }`}>
                 {ticket.id === 'family' && (
-                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-primary text-white text-[10px] font-black px-6 py-1.5 rounded-full uppercase tracking-widest">⭐ Recomendado</div>
+                  <div className="bg-primary text-white text-[10px] font-bold py-1 px-4 rounded-full w-fit mx-auto -mt-12 mb-8 uppercase tracking-widest">⭐ Recomendado</div>
                 )}
-                <h3 className="text-2xl font-black mb-6 text-neutral-dark uppercase">{ticket.type[lang]}</h3>
-                <div className="flex items-start gap-1 mb-8">
-                  <span className="text-primary font-black text-lg mt-2">R$</span>
-                  <span className="text-6xl font-black text-primary font-display">{ticket.price.toFixed(0)}</span>
-                  <span className="text-slate-400 font-bold text-sm mt-8">/pessoa</span>
+                <h3 className="text-2xl font-black text-neutral-dark mb-4">{ticket.type[lang]}</h3>
+                <div className="flex items-start gap-1 mb-6">
+                  <span className="text-primary font-bold text-base mt-2">R$</span>
+                  <span className="font-display text-5xl font-black text-primary leading-none">{ticket.price.toFixed(0)}</span>
+                  <span className="text-slate-500 text-xs self-end mb-1.5">/pessoa</span>
                 </div>
-                <ul className="space-y-4 mb-10">
-                  {ticket.benefits[lang].map((benefit, bIdx) => (
-                    <li key={bIdx} className="flex items-center gap-3 text-slate-500 text-sm font-bold border-b border-slate-50 pb-3">
-                       <span className="text-secondary">✓</span> {benefit}
+                <ul className="space-y-3 mb-8 border-t border-slate-50 pt-5">
+                  {ticket.benefits[lang].map((benefit, i) => (
+                    <li key={i} className="flex gap-2 text-sm text-slate-500 font-medium">
+                      <span className="text-secondary font-bold">✓</span> {benefit}
                     </li>
                   ))}
                 </ul>
-                <a href="#" className={`btn-primary w-full ${ticket.id !== 'family' && 'bg-secondary'}`}>Comprar Ingressos</a>
+                <a href="#" className={`btn-buy w-full block text-center py-3 rounded-md font-bold text-sm ${
+                  ticket.id === 'family' ? 'btn-red-fill' : 'btn-blue-out'
+                }`}>Comprar Ingressos</a>
               </div>
             ))}
           </div>
@@ -353,51 +371,55 @@ export default function App() {
       </section>
 
       {/* Final CTA */}
-      <section className="py-24 bg-secondary text-white text-center">
-        <div className="max-w-4xl mx-auto px-6">
-          <h2 className="text-5xl md:text-7xl font-black mb-6">PRONTO PARA A <span className="text-primary">DIVERSÃO?</span></h2>
-          <p className="text-white/60 text-lg mb-10 max-w-lg mx-auto font-bold uppercase tracking-wide">Garanta seus ingressos agora e evite filas. A aventura está a um clique de distância.</p>
-          <a href="#tickets" className="btn-primary text-xl px-16 py-6 inline-flex">🎟 Comprar Ingressos</a>
-        </div>
+      <section className="py-20 px-[5%] bg-linear-to-br from-secondary to-[#0d1f3c] text-center">
+        <h2 className="text-[clamp(2.5rem,5vw,4.5rem)] font-display font-black text-white leading-none uppercase mb-2">
+          PRONTO PARA A<br /><span className="text-primary">DIVERSÃO?</span>
+        </h2>
+        <p className="text-white/65 text-base mx-auto mb-8 max-w-[460px] leading-relaxed">
+          Garanta seus ingressos agora e evite filas. A aventura está a um clique de distância.
+        </p>
+        <a href="#tickets" className="btn-primary inline-flex">🎟 Comprar Ingressos</a>
       </section>
 
       {/* Footer */}
-      <footer className="bg-footer-dark text-white pt-20 pb-10">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-20">
-            <div className="col-span-1 lg:col-span-2">
-               <div className="flex flex-col leading-none font-display font-black mb-8">
-                <span className="text-2xl">FAMILY</span>
-                <span className="text-primary text-3xl">FUN TOWN</span>
+      <footer className="bg-footer-dark pt-14 pb-6 px-[5%] text-white/45">
+        <div className="max-w-[1400px] mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mb-10">
+            <div>
+              <div className="font-display font-black text-2xl text-white mb-2 leading-none uppercase">
+                FAMILY <span className="text-primary">FUN TOWN</span>
               </div>
-              <p className="text-white/50 max-w-sm mb-8 font-bold leading-relaxed">
-                O destino favorito para diversão em família. Entretenimento de alta qualidade com segurança e emoção garantida.
+              <p className="text-sm leading-relaxed max-w-[260px] mb-4">
+                Onde a diversão encontra a família. Venha viver momentos inesquecíveis com segurança e emoção garantida.
               </p>
-              <div className="flex gap-4">
+              <div className="flex gap-2">
                 {[Instagram, Facebook, Twitter].map((Icon, i) => (
-                  <a key={i} href="#" className="w-10 h-10 bg-white/5 rounded-lg flex items-center justify-center hover:bg-primary transition-colors">
-                    <Icon size={20} />
+                  <a key={i} href="#" className="w-8 h-8 rounded-md border border-white/10 flex items-center justify-center transition-all hover:bg-primary hover:border-primary hover:text-white">
+                    <Icon size={16} />
                   </a>
                 ))}
               </div>
             </div>
-            <div>
-              <h4 className="text-xs font-black uppercase tracking-[0.3em] text-white/30 mb-8">Links Úteis</h4>
-              <ul className="space-y-4">
-                {NAV_ITEMS.map(item => (
-                  <li key={item.href}><a href={item.href} className="text-white/50 hover:text-white transition-colors font-bold uppercase text-[10px] tracking-widest">{item.label[lang]}</a></li>
+
+            <div className="lg:pl-10">
+              <h4 className="text-xs font-bold text-white uppercase tracking-widest mb-4">Links Úteis</h4>
+              <ul className="text-sm space-y-2">
+                {NAV_ITEMS.map((item) => (
+                  <li key={item.href}><a href={item.href} className="hover:text-primary transition-colors">{item.label[lang]}</a></li>
                 ))}
               </ul>
             </div>
+
             <div>
-              <h4 className="text-xs font-black uppercase tracking-[0.3em] text-white/30 mb-8">Informações</h4>
-              <ul className="space-y-4">
-                <li className="text-white/50 font-bold uppercase text-[10px] tracking-widest flex items-center gap-2"><MapPin size={14} /> Orange City, FL</li>
-                <li className="text-white/50 font-bold uppercase text-[10px] tracking-widest flex items-center gap-2"><Phone size={14} /> (386) 775-2777</li>
+              <h4 className="text-xs font-bold text-white uppercase tracking-widest mb-4">Informações</h4>
+              <ul className="text-sm space-y-2">
+                <li>401 S Volusia Ave, Orange City, FL 32763</li>
+                <li><a href="tel:3867752777" className="hover:text-primary transition-colors">(386) 775-2777</a></li>
+                <li>Seg–Sex: 12h–22h | Sáb–Dom: 10h–23h</li>
               </ul>
             </div>
           </div>
-          <div className="pt-10 border-t border-white/5 text-center text-white/30 text-[10px] font-black uppercase tracking-widest">
+          <div className="pt-6 border-t border-white/10 text-center text-[10px] uppercase tracking-widest font-bold">
             © {new Date().getFullYear()} Family Fun Town. Todos os direitos reservados.
           </div>
         </div>
