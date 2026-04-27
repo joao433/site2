@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", "Poppins", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Poppins", "Inter", sans-serif;
+
+  --color-primary: #4DA8DA;
+  --color-secondary: #FFD166;
+  --color-accent: #6ECB63;
+  --color-neutral-bg: #F5F7FA;
+  --color-neutral-white: #FFFFFF;
+
+  --radius-xl: 1.5rem;
+  --radius-2xl: 2rem;
+}
+
+@layer base {
+  body {
+    @apply bg-neutral-bg text-slate-800 font-sans;
+  }
+  
+  h1, h2, h3, h4 {
+    @apply font-display font-bold tracking-tight;
+  }
+}
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+}
+
+.glass {
+  @apply bg-white/80 backdrop-blur-md border border-white/20;
+}
+
+.soft-shadow {
+  box-shadow: 0 10px 30px -10px rgba(77, 168, 218, 0.1);
+}
+
+.transition-soft {
+  @apply transition-all duration-300 ease-in-out;
+}
